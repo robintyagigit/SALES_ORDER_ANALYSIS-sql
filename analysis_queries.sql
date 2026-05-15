@@ -71,7 +71,7 @@ limit 1;
 
 select 
 	o.city,
-	sum(quantity) as total_no_of_orders
+	sum(quantity) as total_items_sold
 from order_items oi
 join orders o ON o.order_id = oi.order_id
 group by city;
@@ -79,18 +79,10 @@ group by city;
 -- Q4. Number of orders per city
 
 select 
-	o.city,
-    count(distinct oi.order_id) as No_of_Orders
-FROM order_items oi
-JOIN orders o ON o.order_id = oi.order_id
-group by o.city;
-
-select 
-	o.city,
-    count(distinct oi.product_id) as No_of_Orders
-FROM order_items oi
-JOIN orders o ON o.order_id = oi.order_id
-group by o.city;
+	city,
+	count(order_id) as no_of_orders
+from orders
+group by city;
 
 -- Q5. Total revenue for Delhi only
 
@@ -100,6 +92,6 @@ select
 from orders o
 JOIN order_items oi ON o.order_id = oi.order_id
 where city = 'Delhi'
-group by city;
+group by o.city;
     
 /*I joined fact table order_items with dimension tables orders and products to derive city-wise and category-wise revenue using aggregation.*/
