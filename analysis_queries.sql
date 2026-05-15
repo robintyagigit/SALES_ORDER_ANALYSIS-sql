@@ -102,3 +102,4 @@ JOIN order_items oi ON o.order_id = oi.order_id
 where city = 'Delhi'
 group by city;
     
+/*I joined fact table order_items with dimension tables orders and products to derive city-wise and category-wise revenue using aggregation.*/
